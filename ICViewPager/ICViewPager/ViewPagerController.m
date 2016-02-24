@@ -43,7 +43,9 @@
             const CGFloat *oldComponents = CGColorGetComponents(color.CGColor);
             CGFloat components[4] = {oldComponents[0], oldComponents[0], oldComponents[0], oldComponents[1]};
             return [UIColor colorWithCGColor:CGColorCreate(colorSpaceRGB, components)];
-        } else // Draw top line
+        } else {
+            return color;
+        }
     };
     
     UIColor *selfColor = convertColorToRGBSpace(self);
@@ -85,8 +87,8 @@
         bezierPath = [UIBezierPath bezierPath];
         
         // Draw the indicator
-        [bezierPath moveToPoint:CGPointMake(0.0, CGRectGetHeight(rect) - 1.0)];
-        [bezierPath addLineToPoint:CGPointMake(CGRectGetWidth(rect), CGRectGetHeight(rect) - 1.0)];
+        [bezierPath moveToPoint:CGPointMake(CGRectGetWidth(rect)/4, CGRectGetHeight(rect) - 1.0)];
+        [bezierPath addLineToPoint:CGPointMake(CGRectGetWidth(rect)/4*3, CGRectGetHeight(rect) - 1.0)];
         [bezierPath setLineWidth:5.0];
         [self.indicatorColor setStroke];
         [bezierPath stroke];
